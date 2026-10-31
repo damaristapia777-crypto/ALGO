@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz cumpleaños ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle, #63365f, #24152f 75%, #100b1d);
+    color: white;
+    padding: 20px;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(2px 2px at 20% 30%, white, transparent),
+      radial-gradient(2px 2px at 70% 20%, white, transparent),
+      radial-gradient(2px 2px at 40% 80%, #ffc4e0, transparent),
+      radial-gradient(2px 2px at 85% 70%, white, transparent);
+    background-size: 180px 180px;
+    animation: brillo 4s infinite alternate;
+}
+
+.card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 650px;
+    padding: 45px 25px;
+    text-align: center;
+    border: 1px solid #ffffff35;
+    border-radius: 30px;
+    background: rgba(255,255,255,.09);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 60px #ff69b425;
+    animation: aparecer 1.5s ease;
+}
+
+h1 {
+    color: #ffd1e5;
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    line-height: 1.4;
+    text-shadow: 0 0 20px #ff70b2;
+}
+
+.cake {
+    font-size: 110px;
+    margin: 30px 0;
+    filter: drop-shadow(0 0 20px #ff8ac0);
+    animation: flotar 3s infinite ease-in-out;
+}
+
+.divider {
+    width: 100px;
+    height: 2px;
+    background: #ffb6d2;
+    margin: 25px auto;
+    box-shadow: 0 0 12px #ffb6d2;
+}
+
+.message {
+    color: #ffe0ed;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    line-height: 1.6;
+}
+
+/* BOTÓN */
+.button-container {
+    display: block;
+    width: 100%;
+    margin-top: 35px;
+    text-align: center;
+}
+
+button {
+    display: inline-block;
+    padding: 18px 45px;
+    background: #e85d98;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 25px #ff80b9;
+    transition: .3s;
+    position: relative;
+    z-index: 10;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #ff4089;
+    box-shadow: 0 0 35px #ff80b9;
+}
+
+#extra {
+    display: none;
+    margin-top: 30px;
+    color: #ffc4df;
+    font-family: Georgia, serif;
+    font-size: 26px;
+    line-height: 1.6;
+    animation: aparecer 1s ease;
+}
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    z-index: 5;
+    color: #ff9bc7;
+    animation: subir linear forwards;
+    pointer-events: none;
+}
+
+@keyframes flotar {
+    50% {
+        transform: translateY(-15px) rotate(3deg);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subir {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes brillo {
+    from { opacity: .5; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="card">
+
+    <h1>¡Feliz cumpleeeaños baby!</h1>
+
+    <div class="cake">🎂</div>
+
+    <div class="divider"></div>
+
+    <p class="message">
+        Que lo pases muy bien :)
+    </p>
+
+    <div class="button-container">
+        <button type="button" onclick="abrirSorpresa()">
+            TE QUIERO ❤️
+        </button>
+    </div>
+
+    <div id="extra">
+        💗💗💗
+        <br>
+        Muchos besitos para ti 💋
+    </div>
+
+</div>
+
+<script>
+function crearCorazon() {
+    const h = document.createElement("div");
+
+    h.className = "heart";
+
+    h.innerHTML = ["♡", "💕", "♥", "✨", "💗"][
+        Math.floor(Math.random() * 5)
+    ];
+
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = (18 + Math.random() * 25) + "px";
+    h.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(h);
+
+    setTimeout(() => h.remove(), 10000);
+}
+
+setInterval(crearCorazon, 450);
+
+function abrirSorpresa() {
+    document.getElementById("extra").style.display = "block";
+
+    for (let i = 0; i < 60; i++) {
+        setTimeout(crearCorazon, i * 35);
+    }
+}
+</script>
+
+</body>
+</html>
